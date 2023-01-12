@@ -1,0 +1,409 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Crypto Challenge 1</title><meta name="keywords" content="CTF - Crypto"><meta name="author" content="Sikesibian"><meta name="copyright" content="Sikesibian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录一次 CTF Crypto 的学习记录。为了保证一定的版权问题，以下题目大致都是经过魔改的(｀・ω・´)  大小写的秘密 培根密码   基本原理狭义地说，培根密码使用两种不同的字体，代表 A 和 B，结合加密表进行加解密。其实不只 A 和 B，只要有两种明显特征来进行区分，就可以利用培根密码加密了。首先，给一张培根密码的代换表：       字母 Bacon Code 二进制 字母 Bacon">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Crypto Challenge 1">
+<meta property="og:url" content="https://sikesibian.github.io/project/2022/08/06/Crypto-Challenge-1/index.html">
+<meta property="og:site_name" content="Sikesibian&#39;s BLOG">
+<meta property="og:description" content="记录一次 CTF Crypto 的学习记录。为了保证一定的版权问题，以下题目大致都是经过魔改的(｀・ω・´)  大小写的秘密 培根密码   基本原理狭义地说，培根密码使用两种不同的字体，代表 A 和 B，结合加密表进行加解密。其实不只 A 和 B，只要有两种明显特征来进行区分，就可以利用培根密码加密了。首先，给一张培根密码的代换表：       字母 Bacon Code 二进制 字母 Bacon">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sikesibian.github.io/project/img/books.jpg">
+<meta property="article:published_time" content="2022-08-06T13:52:31.000Z">
+<meta property="article:modified_time" content="2022-08-08T14:19:48.644Z">
+<meta property="article:author" content="Sikesibian">
+<meta property="article:tag" content="CTF - Crypto">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sikesibian.github.io/project/img/books.jpg"><link rel="shortcut icon" href="/project/img/favicon.png"><link rel="canonical" href="https://sikesibian.github.io/project/2022/08/06/Crypto-Challenge-1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/project/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/project/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Sikesibian","link":"Link: ","source":"Source: Sikesibian's BLOG","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Crypto Challenge 1',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-08 22:19:48'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="is-center"><div class="avatar-img"><img src="/project/img/whale.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Sikesibian</div><div class="author-info__description"></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/project/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/project/archives/"><i class="fa-fw fas fa-clock"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/project/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/project/artitalk"><i class="fa-fw fa fa-heartbeat"></i><span> 时光</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tools"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://json.xbyzs.cf"><span> Json格式化</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://draw.xbyzs.cf"><span> Draw画布</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://enkey.xbyzs.cf"><span> EnKey</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/project/">Sikesibian's BLOG</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/project/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/project/archives/"><i class="fa-fw fas fa-clock"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/project/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/project/artitalk"><i class="fa-fw fa fa-heartbeat"></i><span> 时光</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tools"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://json.xbyzs.cf"><span> Json格式化</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://draw.xbyzs.cf"><span> Draw画布</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://enkey.xbyzs.cf"><span> EnKey</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Crypto Challenge 1</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2022-08-06T13:52:31.000Z" title="Created 2022-08-06 21:52:31">2022-08-06</time></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><p>记录一次 CTF Crypto 的学习记录。为了保证一定的版权问题，以下题目大致都是经过魔改的(｀・ω・´) </p>
+<h1 id="大小写的秘密"><a href="#大小写的秘密" class="headerlink" title="大小写的秘密"></a>大小写的秘密</h1><ul>
+<li><h2 id="培根密码"><a href="#培根密码" class="headerlink" title="培根密码"></a>培根密码</h2></li>
+</ul>
+<ul>
+<li><h3 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h3>狭义地说，培根密码使用两种不同的字体，代表 A 和 B，结合加密表进行加解密。其实不只 A 和 B，只要有两种明显特征来进行区分，就可以利用培根密码加密了。<br>首先，给一张培根密码的代换表： </li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字母</th>
+<th style="text-align:center">Bacon Code</th>
+<th style="text-align:center">二进制</th>
+<th style="text-align:center">字母</th>
+<th style="text-align:center">Bacon Code</th>
+<th style="text-align:center">二进制</th>
+<th style="text-align:center">字母</th>
+<th style="text-align:center">Bacon Code</th>
+<th style="text-align:center">二进制</th>
+<th style="text-align:center">字母</th>
+<th style="text-align:center">Bacon Code</th>
+<th style="text-align:center">二进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A/a</td>
+<td style="text-align:center">aaaaa</td>
+<td style="text-align:center">100001</td>
+<td style="text-align:center">H/h</td>
+<td style="text-align:center">aabbb</td>
+<td style="text-align:center">101000</td>
+<td style="text-align:center">O/o</td>
+<td style="text-align:center">abbba</td>
+<td style="text-align:center">101111</td>
+<td style="text-align:center">V/v</td>
+<td style="text-align:center">babab</td>
+<td style="text-align:center">110110</td>
+</tr>
+<tr>
+<td style="text-align:center">B/b</td>
+<td style="text-align:center">aaaab</td>
+<td style="text-align:center">100010</td>
+<td style="text-align:center">I/i</td>
+<td style="text-align:center">abaaa</td>
+<td style="text-align:center">101001</td>
+<td style="text-align:center">P/p</td>
+<td style="text-align:center">abbbb</td>
+<td style="text-align:center">110000</td>
+<td style="text-align:center">W/w</td>
+<td style="text-align:center">babba</td>
+<td style="text-align:center">110111</td>
+</tr>
+<tr>
+<td style="text-align:center">C/c</td>
+<td style="text-align:center">aaaba</td>
+<td style="text-align:center">100011</td>
+<td style="text-align:center">J/j</td>
+<td style="text-align:center">abaab</td>
+<td style="text-align:center">101010</td>
+<td style="text-align:center">Q/q</td>
+<td style="text-align:center">baaaa</td>
+<td style="text-align:center">110001</td>
+<td style="text-align:center">X/x</td>
+<td style="text-align:center">babbb</td>
+<td style="text-align:center">111000</td>
+</tr>
+<tr>
+<td style="text-align:center">D/d</td>
+<td style="text-align:center">aaabb</td>
+<td style="text-align:center">100100</td>
+<td style="text-align:center">K/k</td>
+<td style="text-align:center">ababa</td>
+<td style="text-align:center">101011</td>
+<td style="text-align:center">R/r</td>
+<td style="text-align:center">baaab</td>
+<td style="text-align:center">110010</td>
+<td style="text-align:center">Y/y</td>
+<td style="text-align:center">bbaaa</td>
+<td style="text-align:center">111001</td>
+</tr>
+<tr>
+<td style="text-align:center">E/e</td>
+<td style="text-align:center">aabaa</td>
+<td style="text-align:center">100101</td>
+<td style="text-align:center">L/l</td>
+<td style="text-align:center">ababb</td>
+<td style="text-align:center">101100</td>
+<td style="text-align:center">S/s</td>
+<td style="text-align:center">baaba</td>
+<td style="text-align:center">110011</td>
+<td style="text-align:center">Z/z</td>
+<td style="text-align:center">bbaab</td>
+<td style="text-align:center">111010</td>
+</tr>
+<tr>
+<td style="text-align:center">F/f</td>
+<td style="text-align:center">aabab</td>
+<td style="text-align:center">100110</td>
+<td style="text-align:center">M/m</td>
+<td style="text-align:center">abbaa</td>
+<td style="text-align:center">101101</td>
+<td style="text-align:center">T/t</td>
+<td style="text-align:center">baabb</td>
+<td style="text-align:center">110100</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">G/g</td>
+<td style="text-align:center">aabba</td>
+<td style="text-align:center">100111</td>
+<td style="text-align:center">N/n</td>
+<td style="text-align:center">abbab</td>
+<td style="text-align:center">101110</td>
+<td style="text-align:center">U/u</td>
+<td style="text-align:center">babaa</td>
+<td style="text-align:center">110101</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以看到，如果把表中的 a 和 b 换成 0 和 1，那么该培根密码对应字母的ASCII码比特形式的后五位减去 1 就相当于代换后的培根密码。 </p>
+<ul>
+<li><h3 id="加密特点"><a href="#加密特点" class="headerlink" title="加密特点"></a>加密特点</h3><p>  对于培根密码，我们可以看到它具有以下几个特点 </p>
+<ul>
+<li>只有两种字符或除空格外只有两种字符 </li>
+<li>每一段的长度为 5 或密文总长度为 5 的倍数 </li>
+<li><p>加密后得到的内容一定存在明显的、“非此即彼”的、有强烈对比性质的特点<br>根据上述列出的性质的第三条，<strong>特殊字体、大小写</strong>都可以被用作实施培根加密的手段<br>比如，对于 cryptography 一词进行加密：</p>
+<blockquote>
+<p>Thi<strong>s</strong> s<strong>e</strong>nte<strong>nce</strong> is an <strong>examp</strong>le <strong>fo</strong>r <strong>usi</strong>ng b<strong>ol</strong>d<strong>e</strong>d le<strong>t</strong>ters to <strong>encr</strong>yp<strong>t</strong> <strong>this</strong> wrd. </p>
+</blockquote>
+<p>也可以是 </p>
+<blockquote>
+<p>thiS sEnreNCE is an EXAMPle FOr USIng bOLdEd leTters to ENCRypT THIS wrd. </p>
+</blockquote>
+<p>等等<br>培根密码花样繁多，但只要抓住它的几个特点，就可以快速判断了。</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><h2 id="Base64"><a href="#Base64" class="headerlink" title="Base64"></a>Base64</h2>这种加密方式着实新奇，笔者最开始做的时候也是靠猜测而得出的答案。这里记录一下标准的解法：<br>先给出密文：<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Ciphertext: q3j5chqwz3jhcgh5</span><br><span class="line">key: a6a4</span><br></pre></td></tr></tbody></table></figure>
+初步分析可以看出，密文应当使用的是Base64加密，而这里有一个非常重要的点，十分考察对于Base64编码的理解：编码表中同时出现了大写和小写，而这里没有给出。而这里所谓的密钥，我们观察到其形式十分像一个十六进制数。这里就体现出这个加密方式的新奇之处了，它对明文进行Base64加密，将其中大写的部分记上 1 ，其余的部位记上 0 ，连起来所得到的比特串所对应的十六进制数就是这里的密钥。<br>下面给出几个常见的Base编码的编码特点： </li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">编码类型</th>
+<th style="text-align:center">A-Z</th>
+<th style="text-align:center">a-z</th>
+<th style="text-align:center">0-9</th>
+<th style="text-align:center">‘=’</th>
+<th style="text-align:center">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Base64</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">Base32</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">无 0 和 1</td>
+</tr>
+<tr>
+<td style="text-align:center">Base16</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">√</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">字母仅 A-F</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="同余方程的求解"><a href="#同余方程的求解" class="headerlink" title="同余方程的求解"></a>同余方程的求解</h1><ul>
+<li><h2 id="中国剩余定理（CRT）"><a href="#中国剩余定理（CRT）" class="headerlink" title="中国剩余定理（CRT）"></a>中国剩余定理（CRT）</h2><p>详情请参考 RSA 3 </p>
+<blockquote>
+<p>设正整数 $ m_1,m_2,\cdots,m_k $ 是两两互质的，那么对于同余方程组<br></p><center style="overflow-x: hidden;"> $ \begin{aligned} &amp;x\equiv a_1\,(mod\,m_1)\\ &amp;x\equiv a_2\,(mod\,m_2)\\ &amp;\cdots \\ &amp;x\equiv a_k\,(mod\,m_k) \end{aligned}$ </center><br>有整数解，并且在模 $ M =m_1\cdot m_2\cdots m_k $ 下的解是唯一的，（且可以构造出解为：<br><center style="overflow-x: hidden;"> $ \begin{aligned} x\equiv a_1M_1M_1^{'}+a_2M_2M_2^{'}+\cdots +a_kM_kM_k^{'}\,\,\,\,\,(mod\,\,M)\end{aligned}$ </center><br>其中 $ M_i = \frac{M}{m_i} $ ， $ M_i^{‘}=M_i^{-1}(mod\,\,m_i) $ ）。 <p></p>
+</blockquote>
+<p>  利用近世代数的语言： </p>
+<blockquote>
+<p>设 $ R $ 是含幺环， $ I_1 , \cdots $ , $ I_n $ 为环 $ R $ 的理想，并且当 $ i\ne j $ 时， $ I_i+I_j=R $ ，则有环同构 : </p>
+<center style="overflow-x: hidden;"> $ R/(I_1\cap\cdots\cap I_n)\cong\prod_{i=1}^n(R/I_i)\\ $ </center>   
+</blockquote>
+</li>
+<li><h2 id="Pell方程"><a href="#Pell方程" class="headerlink" title="Pell方程"></a>Pell方程</h2></li>
+<li><h2 id="费马方程"><a href="#费马方程" class="headerlink" title="费马方程"></a>费马方程</h2></li>
+<li><h2 id="欧拉定理与最大公约数综合应用"><a href="#欧拉定理与最大公约数综合应用" class="headerlink" title="欧拉定理与最大公约数综合应用"></a>欧拉定理与最大公约数综合应用</h2></li>
+<li><h2 id="二元非线性模方程组"><a href="#二元非线性模方程组" class="headerlink" title="二元非线性模方程组"></a>二元非线性模方程组</h2><p>  这里的题目有两个高级方法没有学过，这里记录一下 </p>
+<ul>
+<li><h3 id="Grobner基"><a href="#Grobner基" class="headerlink" title="Gröbner基"></a>Gröbner基</h3></li>
+<li><h3 id="Sylvester结式法"><a href="#Sylvester结式法" class="headerlink" title="Sylvester结式法"></a>Sylvester结式法</h3><ul>
+<li><h4 id="结式"><a href="#结式" class="headerlink" title="结式"></a>结式</h4><p>对于 $ \mathcal{R}[x] $ 中的多项式 $ f = \sum\limits_{i = 0}^m a_i x^i $ 和 $ g = \sum\limits_{j = 0}^n b_j x^j $ ，定义他们关于 $ x $ 的结式为：<br>$ Res_x(f, g) = det \begin{pmatrix} &amp;a_m &amp;a_{m-1} &amp;\cdots &amp;a_0 &amp; &amp;\\&amp; &amp;\ddots &amp;\ddots &amp;\ddots &amp;\ddots &amp; \\&amp; &amp; &amp;a_m &amp;a_{m-1} &amp;\cdots &amp;a_0\\ &amp;b_n &amp;b_{n-1} &amp;\cdots &amp;b_0 &amp; &amp;\\&amp; &amp;\ddots &amp;\ddots &amp;\ddots &amp;\ddots &amp; \\&amp; &amp; &amp;b_n &amp;b_{n-1} &amp;\cdots &amp;b_0\\ \end{pmatrix} \begin{aligned} \left. \begin{aligned}\,\\\,\\\,\end{aligned} \right\}&amp;n \\\,\\ \left. \begin{aligned}\,\\\,\\\,\end{aligned} \right\}&amp;m \end{aligned} $<br>称为多项式 $ f $ 和 $ g $ 关于 $ x $ 的结式，又称Sylvester结式。实际上结式是通过对于多项式最大公因子的研究得到的。其中对应的矩阵称为Sylvester矩阵。现在我们来看看这个Sylvester矩阵：<br>$ \begin{pmatrix} &amp;a_m &amp;a_{m-1} &amp;\cdots &amp;a_0 &amp; &amp;\\&amp; &amp;\ddots &amp;\ddots &amp;\ddots &amp;\ddots &amp; \\&amp; &amp; &amp;a_m &amp;a_{m-1} &amp;\cdots &amp;a_0\\ &amp;b_n &amp;b_{n-1} &amp;\cdots &amp;b_0 &amp; &amp;\\&amp; &amp;\ddots &amp;\ddots &amp;\ddots &amp;\ddots &amp; \\&amp; &amp; &amp;b_n &amp;b_{n-1} &amp;\cdots &amp;b_0\\ \end{pmatrix} \begin{aligned} \left. \begin{aligned}\,\\\,\\\,\end{aligned} \right\}&amp;n \\\,\\ \left. \begin{aligned}\,\\\,\\\,\end{aligned} \right\}&amp;m \end{aligned} $ </p>
+</li>
+<li><h4 id="结式的性质"><a href="#结式的性质" class="headerlink" title="结式的性质"></a>结式的性质</h4><p>  现在我们不加证明地给出结式的几个性质： </p>
+<ul>
+<li>对于域 $ \mathbb{F} $ ， $ f,g\in \mathbb{F}[x]\backslash\mathbb{F} $ ，则存在非零的多项式 $ u(x),v(x)\in \mathbb{F}[x] $ 使得<br>$ uf+vg = Res_x(f, g) $<br>且 $ deg(u)&lt;deg(g),\,deg(v)&lt;deg(f) $  </li>
+<li>对于域 $ \mathbb{F} $ ， $ f,g\in \mathbb{F}[x]\backslash\mathbb{F} $ ，则<br>$ Res_x(f, g) = 0 \Leftrightarrow f = g = 0 \,或\, deg(gcd(f, g))&gt;0 $ </li>
+<li>$ Res_x(f, g) = a_m^n b_n^m \prod\limits_{i=1}^m\prod\limits_{j=1}^n (\alpha_i - \beta_j) = a_m^n \prod\limits_{i = 1}^m g(\alpha_i) = b_n^m \prod\limits_{j = 1}^n f(\beta_j) $<br>其中要求 $ f,g\in \mathbb{F}[x] $ 能够分解成一次因子的乘积：<br>$ f(x) = a_m(x-\alpha_1)\cdots(x-\alpha_m) $<br>$ g(x) = b_n(x-\beta_1)\cdots(x-\beta_n) $ </li>
+<li>判别式公式：<br>$ D(f) = (-1)^{\frac{m(m-1)}{2}}a_m^{-1}Res_x(f,f’) $ </li>
+<li>$ Res(f,g) $ 是关于 $ a_m, \cdots,a_0, b_n,\cdots,b_0 $ 的不可约多项式 </li>
+</ul>
+</li>
+<li><h4 id="结式的应用"><a href="#结式的应用" class="headerlink" title="结式的应用"></a>结式的应用</h4>  上面给出了一大堆高大上的性质，其中的核心无非就是：消去目标元，求解公因子。 由于Sylvester结式的性质对于各种域 $ \mathbb{F} $ 均成立，因此它可以应用于隐函数消参，解同余方程等多种场景。下面就给出一个解非线性同余方程的例子：   <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> bytes_to_long, getPrime</span><br><span class="line"></span><br><span class="line">flag = <span class="string">b'S0o0o0o0o0o0o0o0o0o0o0_surprised_to_meet_Sylvester_here!'</span></span><br><span class="line"></span><br><span class="line">l = <span class="built_in">len</span>(flag)</span><br><span class="line"><span class="keyword">assert</span> l == <span class="number">56</span></span><br><span class="line">x = bytes_to_long(flag[:l//<span class="number">2</span>])</span><br><span class="line">y = bytes_to_long(flag[l//<span class="number">2</span>:])</span><br><span class="line"></span><br><span class="line">p = getPrime(<span class="number">1024</span>)</span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line"></span><br><span class="line">x = <span class="built_in">pow</span>(x, e, p)</span><br><span class="line">y = <span class="built_in">pow</span>(y, e, p)</span><br><span class="line"></span><br><span class="line">a = (<span class="number">9</span> * x + x * y + <span class="number">66</span> * y ** <span class="number">5</span>) % p</span><br><span class="line">b = (x ** <span class="number">6</span> + <span class="number">666</span> * y) % p</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">'p = '</span>, p)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">'a = '</span>, a)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">'b = '</span>, b)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">p =  179222881508974665231566134359449566625105758062071338184992433733726305970449292157794840230653371661869060106709848496586794714016633644349882957018516335515155112744113682985971506815923215966594720806157537032636502837696926556014031620220689237109985974837444987981623443819643909766837347470825601061767</span></span><br><span class="line"><span class="string">a =  120786207899201825119309748752890880341950006783059335628947045982585571781978874023507565695759743299562754648168518497695617726060627074174879555436493043233640241900360306349314660833285188832161993229891119802741592129615581681728338657514598014464084612693308587373206704722854298380132169496130653951646</span></span><br><span class="line"><span class="string">b =  169085426443085041033776595904135223605162936305124102024915422930609502155375579557558158557819429609640556711654234703220268604292501718414441824651912588788376234982344032617205199601557691333357079766292011923940296651770065550764160158915368277929994925543906391558190929307837755598019040697880274088992</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></tbody></table></figure>
+  （ (/ω＼)假装没看到flag ）<br>  现在来分析一下这道题：<br>  它本质就是让我们解一个如下所示的同余方程组：<br>  $ \begin{aligned}9x + 66y^5 + xy &amp;\equiv a(mod\,p) \\ x^6 + 666y &amp;\equiv b(mod\,p) \end{aligned} $<br>  对于这个GF(p)中的二元方程，我们可以通过Sylvester结式的方法进行联立消参，从而转化为一元同余方程。<br>  我们下面利用sagemath来解决这个问题（在线平台：<a target="_blank" rel="noopener" href="https://sagecell.sagemath.org/）">https://sagecell.sagemath.org/）</a>  <figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sagemath</span></span><br><span class="line"><span class="comment"># 调库</span></span><br><span class="line"><span class="keyword">from</span> sage.matrix.matrix2 <span class="keyword">import</span> Matrix</span><br><span class="line"><span class="comment"># from Crypto.Util.number import *</span></span><br><span class="line"><span class="comment"># 给出相应参数</span></span><br><span class="line">p = <span class="number">179222881508974665231566134359449566625105758062071338184992433733726305970449292157794840230653371661869060106709848496586794714016633644349882957018516335515155112744113682985971506815923215966594720806157537032636502837696926556014031620220689237109985974837444987981623443819643909766837347470825601061767</span></span><br><span class="line">a = <span class="number">120786207899201825119309748752890880341950006783059335628947045982585571781978874023507565695759743299562754648168518497695617726060627074174879555436493043233640241900360306349314660833285188832161993229891119802741592129615581681728338657514598014464084612693308587373206704722854298380132169496130653951646</span></span><br><span class="line">b = <span class="number">169085426443085041033776595904135223605162936305124102024915422930609502155375579557558158557819429609640556711654234703220268604292501718414441824651912588788376234982344032617205199601557691333357079766292011923940296651770065550764160158915368277929994925543906391558190929307837755598019040697880274088992</span></span><br><span class="line">e = <span class="number">0x10001</span></span><br><span class="line"><span class="comment"># 打包结式运算的函数</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">resultant</span>(<span class="params">f1, f2, var</span>):</span><br><span class="line">    <span class="keyword">return</span> Matrix.determinant(f1.sylvester_matrix(f2, var))</span><br><span class="line"><span class="comment"># 构造GF(p)上的二元多项式环</span></span><br><span class="line">P.&lt;x, y&gt; = PolynomialRing(GF(p))</span><br><span class="line"><span class="comment"># 构造多项式</span></span><br><span class="line">f1 = <span class="number">9</span> * x + x * y + <span class="number">66</span> * y ** <span class="number">5</span> - a</span><br><span class="line">f2 = x ** <span class="number">6</span> + <span class="number">666</span> * y - b</span><br><span class="line"><span class="comment"># 以y为主元计算结式（结式的结果应该是只剩下x了）</span></span><br><span class="line">hx = resultant(f1, f2, y)</span><br><span class="line"><span class="string">'''Res(f1, f2, y):</span></span><br><span class="line"><span class="string">66*x^30 + 119348304582032011102357271783640997329227534675303845495549757821471751506237899237797827883440187321763038447575278872391311356664129960397680454645942380564237631989938327945394258054005241569716568644787619282290990277319453724205013066783510261417298719793727036063507800142440499906968980597097081903944*x^24 + 163029875373417774308833889878871233910105983770331064342674921748853799642798396764759598425668787446486474988630143416220129110435258417338356787452365247560293675892584547438705415744128821030352892306658183291534282358114706085050958590931775031097710613565107337263560780063996385500880167369052162135430*x^18 + 144940465317567413472010933518897790049026390955665107509973754164930748276065427630247848826751214739819088986532642728731900964931695464537184305915536725479472079962902786375527523945449909177901103453330385289892669996939642367243828655605583401849814573807664962583943896016119572338880107861891512425886*x^12 + 196741925136*x^7 + 77027562580887462034724049874411295387112282149038583622865329821908469205823162467299155436531329642278390146607318012461874351463141902160493050131257241000220044072226182444817564629969353112326806102916770778123088214133406486745158597472289695613350126733909029630129196613800032326510132935651689030778*x^6 + 42046303159241605705193256852787396466588424338791212776209088085433652361260268494488327265570535231994890027050876635362263187387135793148170566783898318279261764084108537648837461259229390212161254885262868963881682766467191895865159676672924956641912371303738945355045939778055221999438437082795199267452*x + 26343719210567608479360419841363970545584284483821487144808080688376580872650067550002418229437383925566727532385041930971467031158482568340670010140941489230875326296100618139637136850536423273395700013391621670701467028354129550150078779805263654491720288394428174935087095240905353570863498812780710798321</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="comment"># 解单元同余方程</span></span><br><span class="line">rx = hx.univariate_polynomial().roots()</span><br><span class="line">x, _ = <span class="built_in">zip</span>(*rx)</span><br><span class="line"><span class="comment"># 通过x解出y</span></span><br><span class="line">y = [((b - i^<span class="number">6</span>) * inverse_mod(<span class="number">666</span>, p)) % p <span class="keyword">for</span> i <span class="keyword">in</span> x]</span><br><span class="line"><span class="comment"># 求RSA私钥</span></span><br><span class="line">d = inverse_mod(e, p-<span class="number">1</span>)</span><br><span class="line"><span class="comment"># RSA求解，得到答案</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(x)):</span><br><span class="line">    m1 = <span class="built_in">pow</span>(x[i], d, p)</span><br><span class="line">    m2 = <span class="built_in">pow</span>(y[i], d, p)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'m1 ='</span>, m1)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">'m2 ='</span>,m2)</span><br><span class="line">    <span class="comment"># print(long_to_bytes(m1) + long_to_bytes(m2))</span></span><br><span class="line"><span class="comment"># from Crypto.Util.number import * 应该会报错，这里注释掉了。。，把数据算出来之后放到python里面就可以了（当然，python里应当已经安装了Crypto库（注意库文件夹首字母要改成大写），具体可参考 RSA 2 ）</span></span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Sikesibian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sikesibian.github.io/project/2022/08/06/Crypto-Challenge-1/">https://sikesibian.github.io/project/2022/08/06/Crypto-Challenge-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="/project/img/books.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/project/2022/08/03/LWE/"><img class="prev-cover" src="/project/img/books.jpg" onerror="onerror=null;src='/project/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">HNP</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E7%9A%84%E7%A7%98%E5%AF%86"><span class="toc-number">1.</span> <span class="toc-text">大小写的秘密</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%B9%E6%A0%B9%E5%AF%86%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">培根密码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">基本原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E7%89%B9%E7%82%B9"><span class="toc-number">1.1.2.</span> <span class="toc-text">加密特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Base64"><span class="toc-number">1.2.</span> <span class="toc-text">Base64</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%8C%E4%BD%99%E6%96%B9%E7%A8%8B%E7%9A%84%E6%B1%82%E8%A7%A3"><span class="toc-number">2.</span> <span class="toc-text">同余方程的求解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86%EF%BC%88CRT%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">中国剩余定理（CRT）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pell%E6%96%B9%E7%A8%8B"><span class="toc-number">2.2.</span> <span class="toc-text">Pell方程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%B9%E9%A9%AC%E6%96%B9%E7%A8%8B"><span class="toc-number">2.3.</span> <span class="toc-text">费马方程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E5%AE%9A%E7%90%86%E4%B8%8E%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E7%BB%BC%E5%90%88%E5%BA%94%E7%94%A8"><span class="toc-number">2.4.</span> <span class="toc-text">欧拉定理与最大公约数综合应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%85%83%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%A8%A1%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="toc-number">2.5.</span> <span class="toc-text">二元非线性模方程组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Grobner%E5%9F%BA"><span class="toc-number">2.5.1.</span> <span class="toc-text">Gröbner基</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sylvester%E7%BB%93%E5%BC%8F%E6%B3%95"><span class="toc-number">2.5.2.</span> <span class="toc-text">Sylvester结式法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E5%BC%8F"><span class="toc-number">2.5.2.1.</span> <span class="toc-text">结式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E5%BC%8F%E7%9A%84%E6%80%A7%E8%B4%A8"><span class="toc-number">2.5.2.2.</span> <span class="toc-text">结式的性质</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%93%E5%BC%8F%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">2.5.2.3.</span> <span class="toc-text">结式的应用</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/project/img/whale.jpg" onerror="this.onerror=null;this.src='/project/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Sikesibian</div><div class="author-info__description"></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/project/2022/08/06/Crypto-Challenge-1/" title="Crypto Challenge 1">Crypto Challenge 1</a><time datetime="2022-08-06T13:52:31.000Z" title="Created 2022-08-06 21:52:31">2022-08-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/project/2022/08/03/LWE/" title="HNP">HNP</a><time datetime="2022-08-03T09:20:12.000Z" title="Created 2022-08-03 17:20:12">2022-08-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/project/2022/07/31/Block-1/" title="Block-1">Block-1</a><time datetime="2022-07-31T08:49:41.000Z" title="Created 2022-07-31 16:49:41">2022-07-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/project/2022/07/30/RSA-3/" title="RSA_3">RSA_3</a><time datetime="2022-07-30T13:50:28.000Z" title="Created 2022-07-30 21:50:28">2022-07-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/project/2022/07/30/RSA-2/" title="RSA 2">RSA 2</a><time datetime="2022-07-30T09:09:13.000Z" title="Created 2022-07-30 17:09:13">2022-07-30</time></div></div></div></div></div></div></main><footer id="footer" style="background: #FFFFFF"><div id="footer-wrap"><div class="copyright">&copy;2022 By Sikesibian</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/chenxz21/hexo-theme-bcxm">Bcxm</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/project/js/utils.js"></script><script src="/project/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://fastly.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script type="text/javascript" src="https://fastly.jsdelivr.net/npm/leancloud-storage@4.10.0/dist/av-min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="Oh~,Yeah~" data-fontsize="24px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
