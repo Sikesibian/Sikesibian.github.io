@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Machine Learning 2</title><meta name="keywords" content="AI"><meta name="author" content="Sikesibian"><meta name="copyright" content="Sikesibian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="机器学习基础学习笔记（西瓜书为主） 线性模型[Leaner Model]基本形式 $ f(\symbfit{x}) &#x3D; w_1x_1+w_2x_2+\cdots +w_dx_d+b $   其中 $ \symbfit{x} &#x3D; (x_1;x_2;\cdots;x_d) $ 为给定的 $ d $ 个属性的描述示例，而 $ \symbfit{w} &#x3D; (w_1;w_2;\cdots;w_d) $ 和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine Learning 2">
+<meta property="og:url" content="https://sikesibian.github.io/project/2022/08/17/Machine-Learning-2/index.html">
+<meta property="og:site_name" content="Sikesibian&#39;s BLOG">
+<meta property="og:description" content="机器学习基础学习笔记（西瓜书为主） 线性模型[Leaner Model]基本形式 $ f(\symbfit{x}) &#x3D; w_1x_1+w_2x_2+\cdots +w_dx_d+b $   其中 $ \symbfit{x} &#x3D; (x_1;x_2;\cdots;x_d) $ 为给定的 $ d $ 个属性的描述示例，而 $ \symbfit{w} &#x3D; (w_1;w_2;\cdots;w_d) $ 和">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sikesibian.github.io/project/img/books.jpg">
+<meta property="article:published_time" content="2022-08-17T04:26:49.000Z">
+<meta property="article:modified_time" content="2022-08-19T07:40:32.277Z">
+<meta property="article:author" content="Sikesibian">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sikesibian.github.io/project/img/books.jpg"><link rel="shortcut icon" href="/project/img/favicon.png"><link rel="canonical" href="https://sikesibian.github.io/project/2022/08/17/Machine-Learning-2/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/project/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/project/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Sikesibian","link":"Link: ","source":"Source: Sikesibian's BLOG","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Machine Learning 2',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-19 15:40:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="is-center"><div class="avatar-img"><img src="/project/img/whale.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Sikesibian</div><div class="author-info__description"></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/project/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/project/archives/"><i class="fa-fw fas fa-clock"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/project/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/project/artitalk"><i class="fa-fw fa fa-heartbeat"></i><span> 时光</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tools"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://json.xbyzs.cf"><span> Json格式化</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://draw.xbyzs.cf"><span> Draw画布</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://enkey.xbyzs.cf"><span> EnKey</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/project/">Sikesibian's BLOG</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/project/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/project/archives/"><i class="fa-fw fas fa-clock"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/project/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/project/artitalk"><i class="fa-fw fa fa-heartbeat"></i><span> 时光</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tools"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://json.xbyzs.cf"><span> Json格式化</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://draw.xbyzs.cf"><span> Draw画布</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://enkey.xbyzs.cf"><span> EnKey</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Machine Learning 2</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2022-08-17T04:26:49.000Z" title="Created 2022-08-17 12:26:49">2022-08-17</time></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><p>机器学习基础学习笔记（西瓜书为主）</p>
+<h1 id="线性模型-Leaner-Model"><a href="#线性模型-Leaner-Model" class="headerlink" title="线性模型[Leaner Model]"></a>线性模型[Leaner Model]</h1><h2 id="基本形式"><a href="#基本形式" class="headerlink" title="基本形式"></a>基本形式</h2><center> $ f(\symbfit{x}) = w_1x_1+w_2x_2+\cdots +w_dx_d+b $ </center> 
+其中 $ \symbfit{x} = (x_1;x_2;\cdots;x_d) $ 为给定的 $ d $ 个属性的描述示例，而 $ \symbfit{w} = (w_1;w_2;\cdots;w_d) $ 和 $ b $ 是学的的参数，把上述公式简化成向量形式就是： 
+<center> $ f(\symbfit{x}) = \symbfit{w}^T\symbfit{x} + b $ </center>  
+
+<p>值得一提的是，许多功能更为强大的<strong>非线性模型（nonlinear model）</strong>都可以在线性模型的基础上通过引入层级结构或高维映射获得。此外，$ \symbfit{w} $ 直观表达了各属性在预测中的重要程度，因此，线性模型是有很好的<strong>可解释性的（comprehensibility，也称可理解性，understandability）</strong>。 </p>
+<h2 id="线性回归-Linear-Regression"><a href="#线性回归-Linear-Regression" class="headerlink" title="线性回归[Linear Regression]"></a>线性回归[Linear Regression]</h2><p>我们给定一个数据集 $ D = \left\{ (\symbfit{x_1}, y_1), (\symbfit{x_2}, y_2), \cdots, (\symbfit{x_m}, y_m) \right\} $ ，线性回归所做的事情就是从上述数据集试图学习一个线性模型，以至于能尽可能准确地预测实值输出标记。 </p>
+<ul>
+<li><h3 id="单元线性回归"><a href="#单元线性回归" class="headerlink" title="单元线性回归"></a>单元线性回归</h3>考虑空间中的<strong>欧式距离</strong>（由欧式距离的等价性，我们直接采用最常用的形式），我们可以尽可能让<strong>均方误差最小化</strong>：  </li>
+</ul>
+<center> $ \begin{aligned}(w^{*}, b^{*}) &amp;= \mathop{\arg\min}\limits_{(w, b)} \sum\limits_{i = 1}^m (f(x_i)-y_i)^2 \\ &amp;= \mathop{\arg\min}\limits_{(w, b)} \sum\limits_{i = 1}^m (y_i-wx_i-b) \end{aligned} $ </center> 
+
+<p>通过一系列求导计算，我们可以得到$ w $ 和 $ b $ 最优解的<strong>闭式（closed-form）</strong>解： </p>
+<center> $ w = \dfrac{\sum\limits_{i=1}^m y_i(x_i - \bar{x})}{\sum\limits_{i=1}^m x_i^2 - \bar{x_i^2}} $ </center>  
+<center> $ b = \bar{y} - w\bar{x} $ </center> 
+
+<ul>
+<li><h3 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h3>可以把数据集表述为一个 $ m\times (d+1) $ 的矩阵 $ X $ ： </li>
+</ul>
+<center> $ X = \begin{pmatrix}
+&amp;x_{11} &amp;x_{12} &amp;\cdots &amp;x_{1d} &amp;1\\
+&amp;x_{21} &amp;x_{22} &amp;\cdots &amp;x_{2d} &amp;1\\
+&amp;\vdots &amp;\vdots &amp;\ddots &amp;\vdots &amp;\vdots\\
+&amp;x_{m1} &amp;x_{m2} &amp;\cdots &amp;x_{md} &amp;1\\
+\end{pmatrix} 
+= 
+\begin{pmatrix} 
+&amp;\symbfit{x_1}^T &amp;1\\
+&amp;\symbfit{x_2}^T &amp;1\\
+&amp;\vdots &amp;\vdots \\
+&amp;\symbfit{x_m}^T &amp;1\\
+\end{pmatrix} $ </center> 
+
+
+<p>同时设 $ \hat{\symbfit{w}} = (\symbfit{w}; b) $ ，$ \symbfit{y} = (y_1;y_2;\cdots;y_m) $<br>根据<strong>欧式距离</strong>，那么就有：  </p>
+<center> $ \hat{\symbfit{w}}^* = \mathop{\arg\min}\limits_{\hat{\symbfit{w}}} (\symbfit{y} - X \hat{\symbfit{w}})^T(\symbfit{y-X\hat{w}}) $ </center> 
+可以得到： 
+<center> $ \hat{\symbfit{w}}^* = (X^TX)^{-1}X^T\symbfit{y} $ </center>
+即： 
+<center> $ f(\hat{\symbfit{x_i}}) = \hat{\symbfit{x_i}}^T(X^TX)^{-1}X^T\symbfit{y} $ </center> 
+
+<p>相信你已经发现这里面有一个不太合理的事情就是 $ X^TX $ 并不一定是<strong>满秩</strong>的，这个情况怎么解决呢？常见的一种做法是我们引入<strong>正则化（regularization）</strong>的项。 </p>
+<p>更广泛地，我们考虑<strong>单调可微</strong>函数 $ g $（称为 <strong>联系函数[link function]</strong>），可以得到<strong>广义线性模型（generalized linear model）</strong>： </p>
+<center> $ y = g^{-1}(\symbfit{w}^T + b) $ </center> 
+
+<ul>
+<li><h3 id="对数几率回归-Logistic-Regresion"><a href="#对数几率回归-Logistic-Regresion" class="headerlink" title="对数几率回归[Logistic Regresion]"></a>对数几率回归[Logistic Regresion]</h3>当我们考虑二分类任务的时候，我们期待能够有一个单调可微函数把一个“二向”的标记与线性回归模型的预测值联系起来。<br>满足“二向”的最简单想法就是使用所谓的<strong>单位阶跃函数（unit-step function）</strong> ： </li>
+</ul>
+<center> $ y = \left\{ \begin{aligned}0\,\,, &amp;&amp;z&lt;0\\ 0.5, &amp;&amp;z=0\\ 1\,\,, &amp;&amp;z&gt;0  \end{aligned} \right. $ </center> 
+
+<p>我们可以发现的是，这个函数它<strong>并不连续</strong>。通过一些研究，我们找到了一种一定程度上可以近似替代单位阶跃函数的<strong>替代函数（surrogate function）</strong>，一种常用的替代函数就是我们的<strong>对数几率函数（logistic function）</strong>  </p>
+<center> $ y = \dfrac{1}{1+e^{-z}} $ </center> 
+
+<p>（从形状上看，对数几率函数是一个形似S的函数，像这种，<strong>形状类似于S的函数</strong>我们把它叫做<strong>Sigmoid函数</strong>）<br>把对数几率函数带入广义线性模型我们可以得到：<br>$ y = \dfrac{1}{1+e^{-(\symbfit{w}^T\symbfit{x}+b)}} $<br>即：<br>$ \ln\dfrac{y}{1-y} = \symbfit{w}^T\symbfit{x}+b $ </p>
+<p>我们可以看到其中一个有意思的地方，首先， $ y $ 的取值是在0到1之间的，这时，如果我们<strong>把 $ y $ 视为样本 $ \symbfit{x} $ 作为正例的可能性</strong>，那么 <strong>$ 1-y $ 就是其反例的可能性</strong>，将两者一比，我们得到的比值 $ \dfrac{y}{1-y} $ 称为<strong>“几率”（odds）</strong>，这个几率反映了 $ \symbfit{x} $ 作为正例的相对可能性，对其取对数我们就得到了<strong>“对数几率”（log odds，或logit）</strong>： $ \ln\dfrac{y}{1-y} $ 。<br>我们接下来再利用刚刚提到的理解，对上式进行下述改写：<br>$ \ln\dfrac{p(y=1|\symbfit{x})}{p(y=0|\symbfit{x})}=\symbfit{w}^T\symbfit{x} + b $ </p>
+<ul>
+<li><h3 id="线性判别分析-LDA"><a href="#线性判别分析-LDA" class="headerlink" title="线性判别分析[LDA]"></a>线性判别分析[LDA]</h3><strong>线性判别分析（Linear Discriminant Analysis，简称LDA）</strong>是一种经典的线性学习方法，又称“<strong>Fisher判别分析</strong>” 。它的主要思想就是：<strong>将样例投影到一条直线上，希望同类点的投影尽量靠近，异类点的投影尽量互相远离</strong>。  </li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Sikesibian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sikesibian.github.io/project/2022/08/17/Machine-Learning-2/">https://sikesibian.github.io/project/2022/08/17/Machine-Learning-2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="/project/img/books.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/project/2022/08/13/LFSR-1/"><img class="prev-cover" src="/project/img/books.jpg" onerror="onerror=null;src='/project/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">LFSR 1</div></div></a></div><div class="next-post pull-right"><a href="/project/2022/08/19/ECC-1/"><img class="next-cover" src="/project/img/books.jpg" onerror="onerror=null;src='/project/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">ECC 1</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/project/2022/08/11/Machine-Learning-1/" title="Machine Learning 1"><img class="cover" src="/project/img/books.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-11</div><div class="title">Machine Learning 1</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B-Leaner-Model"><span class="toc-number">1.</span> <span class="toc-text">线性模型[Leaner Model]</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%BD%A2%E5%BC%8F"><span class="toc-number">1.1.</span> <span class="toc-text">基本形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92-Linear-Regression"><span class="toc-number">1.2.</span> <span class="toc-text">线性回归[Linear Regression]</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-number">1.2.1.</span> <span class="toc-text">单元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E5%85%83%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="toc-number">1.2.2.</span> <span class="toc-text">多元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%95%B0%E5%87%A0%E7%8E%87%E5%9B%9E%E5%BD%92-Logistic-Regresion"><span class="toc-number">1.2.3.</span> <span class="toc-text">对数几率回归[Logistic Regresion]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E5%88%A4%E5%88%AB%E5%88%86%E6%9E%90-LDA"><span class="toc-number">1.2.4.</span> <span class="toc-text">线性判别分析[LDA]</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/project/img/whale.jpg" onerror="this.onerror=null;this.src='/project/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Sikesibian</div><div class="author-info__description"></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/project/2022/12/19/Crypto-Challenge-4/" title="Crypto_Challenge_4">Crypto_Challenge_4</a><time datetime="2022-12-19T09:02:41.000Z" title="Created 2022-12-19 17:02:41">2022-12-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/project/2022/11/10/Crypto-Challenge-3/" title="Crypto_Challenge_3">Crypto_Challenge_3</a><time datetime="2022-11-10T08:26:09.000Z" title="Created 2022-11-10 16:26:09">2022-11-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/project/2022/11/08/LFSR-2/" title="LFSR_2">LFSR_2</a><time datetime="2022-11-08T11:04:07.000Z" title="Created 2022-11-08 19:04:07">2022-11-08</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/project/2022/10/22/Painting-1/" title="Painting_1">Painting_1</a><time datetime="2022-10-22T10:19:38.000Z" title="Created 2022-10-22 18:19:38">2022-10-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/project/2022/10/15/Crypto-Challenge-2/" title="Crypto_challenge_2">Crypto_challenge_2</a><time datetime="2022-10-15T11:17:57.000Z" title="Created 2022-10-15 19:17:57">2022-10-15</time></div></div></div></div></div></div></main><footer id="footer" style="background: #FFFFFF"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Sikesibian</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/chenxz21/hexo-theme-bcxm">Bcxm</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/project/js/utils.js"></script><script src="/project/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://fastly.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script type="text/javascript" src="https://fastly.jsdelivr.net/npm/leancloud-storage@4.10.0/dist/av-min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="Oh~,Yeah~" data-fontsize="24px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
