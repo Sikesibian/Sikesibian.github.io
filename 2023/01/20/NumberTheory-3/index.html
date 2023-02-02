@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>NumberTheory_3</title><meta name="keywords" content="math"><meta name="author" content="Sikesibian"><meta name="copyright" content="Sikesibian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="源：华罗庚《数论导引》     二次剩余二次剩余的定义 设 $ m $ 为大于 $ 1 $ 的整数，假设 $ \gcd(m, n) &#x3D; 1 $，如果满足 $ x ^ 2 \equiv n (\mathrm{mod}\  m) $ 可解，那么就把 $ n $ 称为对于模 $ m $ 的二次剩余，否则称为 $ m $ 的二次非剩余。      二次剩余的分布 设 $ p &gt; 2 $ ，那么在模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NumberTheory_3">
+<meta property="og:url" content="https://sikesibian.github.io/2023/01/20/NumberTheory-3/index.html">
+<meta property="og:site_name" content="Sikesibian&#39;s BLOG">
+<meta property="og:description" content="源：华罗庚《数论导引》     二次剩余二次剩余的定义 设 $ m $ 为大于 $ 1 $ 的整数，假设 $ \gcd(m, n) &#x3D; 1 $，如果满足 $ x ^ 2 \equiv n (\mathrm{mod}\  m) $ 可解，那么就把 $ n $ 称为对于模 $ m $ 的二次剩余，否则称为 $ m $ 的二次非剩余。      二次剩余的分布 设 $ p &gt; 2 $ ，那么在模">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sikesibian.github.io/img/books.jpg">
+<meta property="article:published_time" content="2023-01-20T05:57:47.000Z">
+<meta property="article:modified_time" content="2023-02-02T11:56:41.574Z">
+<meta property="article:author" content="Sikesibian">
+<meta property="article:tag" content="math">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sikesibian.github.io/img/books.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://sikesibian.github.io/2023/01/20/NumberTheory-3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"Author: Sikesibian","link":"Link: ","source":"Source: Sikesibian's BLOG","info":"Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source."}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://fastly.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'NumberTheory_3',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-02-02 19:56:41'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.2">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="is-center"><div class="avatar-img"><img src="/img/whale.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Sikesibian</div><div class="author-info__description"></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-clock"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/artitalk"><i class="fa-fw fa fa-heartbeat"></i><span> 时光</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tools"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://json.xbyzs.cf"><span> Json格式化</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://draw.xbyzs.cf"><span> Draw画布</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://enkey.xbyzs.cf"><span> EnKey</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Sikesibian's BLOG</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-clock"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/artitalk"><i class="fa-fw fa fa-heartbeat"></i><span> 时光</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-tools"></i><span> 工具</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" target="_blank" rel="noopener" href="https://json.xbyzs.cf"><span> Json格式化</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://draw.xbyzs.cf"><span> Draw画布</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://enkey.xbyzs.cf"><span> EnKey</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">NumberTheory_3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">Created</span><time datetime="2023-01-20T05:57:47.000Z" title="Created 2023-01-20 13:57:47">2023-01-20</time></span></div><div class="meta-secondline"></div></div></div><article class="post-content" id="article-container"><p><code>源：华罗庚《数论导引》</code>    </p>
+<h1 id="二次剩余"><a href="#二次剩余" class="headerlink" title="二次剩余"></a>二次剩余</h1><h4 id="二次剩余的定义"><a href="#二次剩余的定义" class="headerlink" title="二次剩余的定义"></a>二次剩余的定义</h4><blockquote>
+<p>设 $ m $ 为大于 $ 1 $ 的整数，<strong>假设 $ \gcd(m, n) = 1 $</strong>，如果满足 $ x ^ 2 \equiv n (\mathrm{mod}\  m) $ 可解，那么就把 $ n $ 称为对于模 $ m $ 的二次剩余，否则称为 $ m $ 的二次非剩余。    </p>
+</blockquote>
+<h4 id="二次剩余的分布"><a href="#二次剩余的分布" class="headerlink" title="二次剩余的分布"></a>二次剩余的分布</h4><blockquote>
+<p>设 $ p &gt; 2 $ ，那么在模 $ p $ 缩系中，恰有 $ \dfrac{1}2(p - 1) $ 个二次剩余（即 $ 1 ^ 2 , 2 ^ 2, \cdots , (\dfrac{1}{2}(p - 1)) ^ 2\ (\mathrm{mod}\ p) $ ）和 $ \dfrac{1}{2}(p - 1) $ 个二次非剩余。    </p>
+</blockquote>
+<h4 id="二次剩余的判别与表示"><a href="#二次剩余的判别与表示" class="headerlink" title="二次剩余的判别与表示"></a>二次剩余的判别与表示</h4><ul>
+<li><p>Legendre符号（勒让德符号）：    </p>
+<blockquote>
+<p>设 $ p $ 为大于 $ 2 $ 的素数，且 $ p \not{|} n $ ，那么就可以引入如下记号：    </p>
+<script type="math/tex; mode=display">\left( \dfrac{n}{p} \right) = \left\{ \begin{aligned} 1,\ \ & 若 n 为模p二次剩余 \\ -1,\ \ & 若 n 为模p二次非剩余 \end{aligned} \right.</script></blockquote>
+<p>  易知： $ \dfrac{1}{\left( \dfrac{n}{p} \right)} = \left( \dfrac{n}{p} \right) $ </p>
+</li>
+<li><p>Euler判别条件（欧拉判据）：     </p>
+<blockquote>
+<p>设 $ p $ 为一个奇素数，那么就有</p>
+<script type="math/tex; mode=display">\left( \dfrac{n}{p} \right) \equiv n ^ {\frac{p - 1}{2}} (\mathrm{mod}\  p)</script></blockquote>
+</li>
+<li><p>积性函数：    </p>
+<blockquote>
+<p>若 $ p \not{|} mn $ ，则有：    </p>
+<script type="math/tex; mode=display">\left( \dfrac{m}{p} \right) \left( \dfrac{n}{p} \right) = \left( \dfrac{mn}{p} \right)</script></blockquote>
+</li>
+<li><p>结构性质：    </p>
+<blockquote>
+<ol>
+<li>二次剩余 $ \times $ 二次剩余 $ = $ 二次剩余    </li>
+<li>二次剩余 $ \times $ 二次非剩余 $ = $ 二次非剩余</li>
+<li>二次非剩余 $ \times $ 二次非剩余 $ = $ 二次剩余    </li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h4 id="二次剩余的计算"><a href="#二次剩余的计算" class="headerlink" title="二次剩余的计算"></a>二次剩余的计算</h4><ul>
+<li><p>高斯引理（累积法证明）：    </p>
+<blockquote>
+<p>设奇素数 $ p $ ， $ p \not{|} n $ ，考察</p>
+<script type="math/tex; mode=display">n, 2n, \cdots , \dfrac{1}{2}(p - 1)n (\mathrm{mod}\  p)</script><p>  中大于 $ \dfrac{1}{2}p $ 的个数 $ m $ ，那么就有:    </p>
+<script type="math/tex; mode=display">\left( \dfrac{n}{p} \right) = (-1) ^ m</script></blockquote>
+<p>  证明：<br>  设 $ t = \dfrac{1}{2}(p - 1) $<br>  在 $ n, 2n, \cdots , \dfrac{1}{2}(p - 1)n (\mathrm{mod}\  p)$ 中小于 $ \dfrac{1}{2}p $ 的数为 $ a_ 1, \cdots , a_ t $ ，而其中大于 $ \dfrac{1}{2} $ 的数为 $ b_ 1, \cdots , b_ m $<br>  那么就有（累积法）：    </p>
+<script type="math/tex; mode=display">\prod\limits_ {i = 1}^{t}a_ i \prod\limits_ {j = 1}^ {m} b_ j \equiv \prod\limits_ {k = 1}^{\frac{1}{2}(p - 1)} = \left( \dfrac{p - 1}{2} \right)! n ^ {\frac{p - 1}{2}} (\mathrm{mod}\  p)</script><p>  又注意到，不仅 $ a_ 1, \cdots , a_ t , p - b_ 1, \cdots , p - b_ m $ 两两不同，而且它们均处于 $ 1 $ 和 $ \dfrac{1}{2}(p - 1) $ 之间，于是同样有（累积法）：    </p>
+<script type="math/tex; mode=display">\prod\limits_ {i = 1}^{t}a_ i \prod\limits_ {j = 1}^ {m} b_ j \equiv \prod\limits_ {k = 1}^{\frac{1}{2}(p - 1)} = \left( \dfrac{p - 1}{2} \right) !</script><p>  两个积式结合，然后利用欧拉判据即证    </p>
+<p>  于是在 <strong>$ n $ 为奇数</strong>时有更具体的形式：     </p>
+<blockquote>
+<script type="math/tex; mode=display">\left( \dfrac{n}{p} \right) = (-1) ^ {\sum\limits_ {k = 1}^{\frac{p - 1}{2}}\left[\frac{kn}{p}\right]}</script></blockquote>
+<p>  证明：<br>  考虑采用带余除法：    </p>
+<script type="math/tex; mode=display">kn = n_ kp + r_ k,\ \ n_ k = \left[ \dfrac{kq}{p} \right],\ \ 1 \leqslant r_ k \leqslant p - 1</script><p>  其中 $ 1 \leqslant k \leqslant \frac{1}{2}(p - 1) $<br>  令 $ a = \sum\limits_ {i = 1} ^ {t} a_ i $ ， $ b = \sum\limits_ {j = 1} ^ {m} b_ j $ ，则易得：       </p>
+<script type="math/tex; mode=display">\sum\limits_{k = 1}^{\frac{1}{2}(p - 1)}r_ k = a + b</script><p>  以及   </p>
+<script type="math/tex; mode=display">\dfrac{p ^ 2 - 1}{8} = 1 + 2 + \cdots + \dfrac{1}{2}(p - 1) = a + mp - b</script><p>  那么就有：    </p>
+<script type="math/tex; mode=display">\dfrac{p ^ 2 - 1}{8}(n - 1) = p \sum\limits_ {k = 1}^{\frac{1}{2}(p - 1)}n_ k -mp + 2b</script><p>  由于考虑到 $ n - 1 $ 为偶数，以及 $ -1 $ 的幂次周期为 $ 2 $ ，所以我们考虑上式模 $ 2 $ 的结果即为：   </p>
+<script type="math/tex; mode=display">m \equiv \sum\limits_ {k = 1} ^ {\frac{1}{2}(p - 1)}n_ k (\mathrm{mod}\ 2)</script><p>  也就证明了：<br>  对于大于 $ 2 $ 的奇数 $ n $ 都有：    </p>
+<script type="math/tex; mode=display">\left( \dfrac{n}{p} \right) = (-1) ^ {\sum\limits_ {k = 1}^{\frac{p - 1}{2}}\left[\frac{kn}{p}\right]}</script></li>
+<li><p>利用标准分解的计算：    </p>
+<blockquote>
+<p>$ \left( \dfrac{n}{p} \right) = \left( \dfrac{\pm 1}{p} \right)\left( \dfrac{2}{p} \right) ^ r \left( \dfrac{q_ 1}{p} \right) ^ {l_ 1} \cdots \left( \dfrac{q_ s}{p} \right) ^ {l_ s} $     </p>
+</blockquote>
+<ul>
+<li><p>对于 $ \left( \dfrac{-1}{p} \right) $     </p>
+<blockquote>
+<p>对于奇素数 $ p $ ， $ \left( \dfrac{-1}{p} \right) = (- 1)^ {\frac{1}{2}(p - 1)} $     </p>
+</blockquote>
+<p>注：依此可知 $ x ^ 2 + 1 $ 的奇素因子一定模 $ 4 $ 余 $ 1 $     </p>
+</li>
+<li><p>对于 $ \left( \dfrac{2}{p} \right) $     </p>
+<blockquote>
+<p>对于奇素数 $ p $ ， $ \left( \dfrac{2}{p} \right) = (- 1)^ {\frac{1}{8}(p ^ 2 - 1)} $     </p>
+</blockquote>
+<p>证明关键：考虑高斯引理中的 $ n = 2 $ ，那么就有 $ m = \left[ \dfrac{p}{2} \right] - \left[ \dfrac{p}{4} \right] $ ，然后对 $ p $ 作带余除法进行讨论即可（ $ \mathrm{mod}\ 8 $ ）    </p>
+<p>注：依此可知 $ x ^ 2 - 2 $ 的奇素因子一定模 $ 8 $ 余 $ \pm 1 $ </p>
+</li>
+<li><p>二次互反律    </p>
+<blockquote>
+<p>设两个不等的奇素数 $ p, q $ ，那么就有：    </p>
+<script type="math/tex; mode=display">\left( \dfrac{p}{q} \right)\left( \dfrac{q}{p} \right) = (-1) ^ {\frac{1}{2}(p - 1)(q - 1)}</script></blockquote>
+<p>注：换言之就是，对于同余式：    </p>
+<script type="math/tex; mode=display">x ^ 2 \equiv p (\mathrm{mod}\  q),\ \ \ x ^ 2 \equiv q (\mathrm{mod}\  p)</script><p>如果 $ p \equiv q \equiv 3(\mathrm{mod}\  4) $ ，其中一个可解，一个不可解，否则就都可解或都不可解    </p>
+<p>证明：<br>Part 1（引理，不等奇素数 $ p, q $ ）：    </p>
+<blockquote>
+<script type="math/tex; mode=display">\sum\limits_{k = 1} ^ {\frac{1}{2}(p - 1)}\left[ \dfrac{kq}{p} \right] + \sum\limits_{l = 1} ^ {\frac{1}{2}(q - 1)}\left[ \dfrac{lq}{p} \right] = \dfrac{p - 1}{2}\dfrac{q - 1}{2}</script></blockquote>
+<p>引理的证明：<br>构造以 $ (0, 0) $ ， $ \left( 0, \frac{1}{2}q \right) $ ， $ \left( \frac{1}{2}p, 0 \right) $ ， $ \left( \frac{1}{2}p, \frac{1}{2}q \right) $ 为顶点的矩形，连接对角线 $ \left( 0, \frac{1}{2}q \right) $ ， $ \left( \frac{1}{2}p, 0 \right) $ ，那么就有对角线上的整点满足 $ qx - py = 0 $ ，也就是 $ p | x,\ q | y $ ，但是很明显，这样的点是一定在矩形之外的，也就是说，在矩形内部（非框线上）的点恰好有 $ \dfrac{p - 1}{2}\dfrac{q - 1}{2} $ 个。此时我们就可以考虑对角线下方三角形的整数点个数恰好为 $ \sum\limits_{k = 1} ^ {\frac{1}{2}(p - 1)}\left[ \dfrac{kq}{p} \right] $ ，上方三角形中整数点的个数恰好为 $ \sum\limits_{l = 1} ^ {\frac{1}{2}(q - 1)}\left[ \dfrac{lq}{p} \right] $ 个。    </p>
+<p>Part 2（证明主体）：<br>由高斯引理即证。    </p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="雅可比符号（Jacobi）"><a href="#雅可比符号（Jacobi）" class="headerlink" title="雅可比符号（Jacobi）"></a>雅可比符号（Jacobi）</h4><blockquote>
+<p>在<strong>允许素因子重复</strong>的情况下设 $ m $ 的标准分解式为：    </p>
+<script type="math/tex; mode=display">m = \prod\limits_{r = 1}^{t}p_ r</script><p>定义对于 $ \gcd(m, n) = 1 $ 的 $ m, n $ ，雅可比符号为：    </p>
+<script type="math/tex; mode=display">\left( \dfrac{n}{m} \right) = \prod\limits_{r = 1}^ t\left( \dfrac{n}{p_ r} \right)</script></blockquote>
+<p>比如： $ \left( \dfrac{1}{m} \right) = 1 $ ， $ \gcd(a, m) = 1 $ 则有 $ \left( \dfrac{a ^ 2}{m} \right) = 1 $ 。<strong>注意</strong>： $ \left( \dfrac{n}{m} \right) = 1 $ 并不能表示 $ x ^ 2 \equiv n (\mathrm{mod}\  m) $ 有解！     </p>
+<ul>
+<li><p>计算方法<br>  这里均有 $ (n, m) = 1 $     </p>
+<ul>
+<li>若 $ n \equiv n’ (\mathrm{mod}\  m) $ 则    <script type="math/tex; mode=display">\left( \dfrac{n}{m} \right) = \left( \dfrac{n'}{m} \right)</script>下面均有 $ (n, m) = 1 $ 以及 $ (n, m’) = 1 $ 或 $ (n’, m) = 1 $      </li>
+<li>有：<script type="math/tex; mode=display">\left( \dfrac{n}{m} \right) \left( \dfrac{n}{m'} \right) = \left( \dfrac{n}{mm'} \right)</script></li>
+<li>有：    <script type="math/tex; mode=display">\left( \dfrac{n}{m} \right) \left( \dfrac{n'}{m} \right) = \left( \dfrac{nn'}{m} \right)</script></li>
+</ul>
+</li>
+<li><p>类似二次互反律的结构（但并不是二次互反律！！！）</p>
+<ul>
+<li>$ \left( \dfrac{-1}{m} \right) = (-1) ^ {\frac{m-1}2} $    </li>
+<li><p>$ \left( \dfrac{2}{m} \right) = (-1) ^ {\frac{1}{8}(m ^ 2 - 1)} $     </p>
+<p>注意到： $ \dfrac{u^2v^2 - 1}{8} \equiv \dfrac{u^2 -1}{8} + \dfrac{v^2-1}{8}(\mathrm{mod}\  2) $     </p>
+</li>
+<li><p>对于互素的两个正奇数 $ m, n $ ：    </p>
+<script type="math/tex; mode=display">\left( \dfrac{m}{n} \right)\left( \dfrac{n}{m} \right) = (-1) ^ {\frac{n - 1}2\frac{m - 1}2}</script><p>令 $ m = \prod p $ 和 $ n = \prod q $ 即可</p>
+</li>
+<li><p>对于互素两个负奇数 $ m, n $ ：    </p>
+<script type="math/tex; mode=display">\left( \dfrac{n}{|m|} \right)\left( \dfrac{m}{|n|} \right) = -(-1) ^ {\frac{n - 1}2\frac{m - 1}2}</script></li>
+<li><p>对于互素的两个一正一负的两个奇数 $ m, n $ ：    </p>
+<script type="math/tex; mode=display">\left( \dfrac{n}{|m|} \right)\left( \dfrac{m}{|n|} \right) = (-1) ^ {\frac{n - 1}2\frac{m - 1}2}</script></li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Sikesibian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://sikesibian.github.io/2023/01/20/NumberTheory-3/">https://sikesibian.github.io/2023/01/20/NumberTheory-3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post_share"><div class="social-share" data-image="/img/books.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://fastly.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/01/15/NumberTheory-2/"><img class="prev-cover" src="/img/books.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">NumberTheory_2</div></div></a></div><div class="next-post pull-right"><a href="/2023/01/29/Entropy-and-Complexity-1/"><img class="next-cover" src="/img/books.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Entropy and Complexity_1</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/01/15/NumberTheory-2/" title="NumberTheory_2"><img class="cover" src="/img/books.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-15</div><div class="title">NumberTheory_2</div></div></a></div><div><a href="/2023/01/14/NumberTheory-1/" title="NumberTheory_1"><img class="cover" src="/img/books.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-01-14</div><div class="title">NumberTheory_1</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99"><span class="toc-number">1.</span> <span class="toc-text">二次剩余</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.0.0.1.</span> <span class="toc-text">二次剩余的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99%E7%9A%84%E5%88%86%E5%B8%83"><span class="toc-number">1.0.0.2.</span> <span class="toc-text">二次剩余的分布</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99%E7%9A%84%E5%88%A4%E5%88%AB%E4%B8%8E%E8%A1%A8%E7%A4%BA"><span class="toc-number">1.0.0.3.</span> <span class="toc-text">二次剩余的判别与表示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E5%89%A9%E4%BD%99%E7%9A%84%E8%AE%A1%E7%AE%97"><span class="toc-number">1.0.0.4.</span> <span class="toc-text">二次剩余的计算</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%85%E5%8F%AF%E6%AF%94%E7%AC%A6%E5%8F%B7%EF%BC%88Jacobi%EF%BC%89"><span class="toc-number">1.0.0.5.</span> <span class="toc-text">雅可比符号（Jacobi）</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/whale.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Sikesibian</div><div class="author-info__description"></div></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/29/Entropy-and-Complexity-1/" title="Entropy and Complexity_1">Entropy and Complexity_1</a><time datetime="2023-01-29T09:42:39.000Z" title="Created 2023-01-29 17:42:39">2023-01-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/20/NumberTheory-3/" title="NumberTheory_3">NumberTheory_3</a><time datetime="2023-01-20T05:57:47.000Z" title="Created 2023-01-20 13:57:47">2023-01-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/15/NumberTheory-2/" title="NumberTheory_2">NumberTheory_2</a><time datetime="2023-01-15T15:33:59.000Z" title="Created 2023-01-15 23:33:59">2023-01-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2023/01/14/NumberTheory-1/" title="NumberTheory_1">NumberTheory_1</a><time datetime="2023-01-14T10:05:10.000Z" title="Created 2023-01-14 18:05:10">2023-01-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/12/19/Crypto-Challenge-4/" title="Crypto_Challenge_4">Crypto_Challenge_4</a><time datetime="2022-12-19T09:02:41.000Z" title="Created 2022-12-19 17:02:41">2022-12-19</time></div></div></div></div></div></div></main><footer id="footer" style="background: #FFFFFF"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2023 By Sikesibian</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/chenxz21/hexo-theme-bcxm">Bcxm</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://fastly.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://fastly.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script type="text/javascript" src="https://fastly.jsdelivr.net/npm/leancloud-storage@4.10.0/dist/av-min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script id="click-show-text" src="https://fastly.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-show-text.min.js" data-mobile="false" data-text="Oh~,Yeah~" data-fontsize="24px" data-random="false" async="async"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
