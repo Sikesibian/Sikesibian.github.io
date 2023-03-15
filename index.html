@@ -48,7 +48,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2023-03-03 00:17:11'
+  postUpdate: '2023-03-15 09:03:34'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -222,7 +222,30 @@ p/print
 
 x/ &lt; n/f/u &gt; &lt; addr &gt;
 查看某处地址连续的值如：x/20 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/02/02/NumberTheory-4/" title="NumberTheory_4">NumberTheory_4</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-02-02T11:58:10.000Z" title="Created 2023-02-02 19:58:10">2023-02-02</time></span></div><div class="content">源：华罗庚《数论导引》    
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/01/29/Entropy-and-Complexity-1/" title="Entropy and Complexity_1">Entropy and Complexity_1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-01-29T09:42:39.000Z" title="Created 2023-01-29 17:42:39">2023-01-29</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Entropy-and-Complexity/">Entropy and Complexity</a></span></div><div class="content">源《密码学原理与实践（第二版）》，《计算理论导引》    
+多项式的性质多项式的整除多项式的带余除法多项式环的理想
+定理：    
+
+若一个多项式集合 $ I $ 满足以下条件，那么称为一个理想集合（Ideal）：    
+
+若 $ f, g $ 为 $ I $ 中多项式，那么 $ f + g $ 也在其中。    
+若 $ f $ 为 $ I $ 中多项式，那么对于任意多项式 $ h $ 都有 $ fh $ 属于 $ I $ 。    
+
+
+  比如：某一多项式所有的倍数所构成的集合    
+
+
+多项式的裴蜀定理多项式环的素元
+定理：    
+
+若 $ p $ 为一个不可约多项式，且 $ p | fg $ ，那么 $ p | f $ 或 $ p | g $ 。    
+
+  证明关键：    
+\gcd(f, p) = 1 \Rightarrow mf + np = 1 \Rightarrow mfg + ngp = g \Rightarrow p | g
+
+多项式的唯一分解定理
+定理：    
+
+任一多项式都可以分解为不可约多项式之积。如果相伴的多项式都算作相同，不计因子次序，那么这种分解方法是唯一的。    ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/01/29/Entropy-and-Complexity-1/" title="Entropy and Complexity_1">Entropy and Complexity_1</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-01-29T09:42:39.000Z" title="Created 2023-01-29 17:42:39">2023-01-29</time></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Entropy-and-Complexity/">Entropy and Complexity</a></span></div><div class="content">源《密码学原理与实践（第二版）》，《计算理论导引》    
 香农理论总结安全性
 计算安全性（Computational Security）  对于一个密码体制，用最好的算法去攻破它都至少需要 $ N $ 次操作，其中 $ N $ 为一个已知的特定的非常大的数字。    
 可证明安全性（Provable Security）  将密码体制的安全性归结为某个经过深入研究的数学难题。    
